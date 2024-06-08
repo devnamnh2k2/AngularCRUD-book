@@ -1,0 +1,179 @@
+<main class="main-content mt-3">
+    <div class="container">
+        <div class="row">
+            <aside class="col-md-3">
+                <div class="card rounded-0">
+                    <article class="filter-group">
+                        <h5 class="card-header">Featured</h5>
+                        <div class="filter-content collapse show" id="collapse_1">
+                            <div class="card-body">
+                                <div class="input-group pb-3">
+                                    <input type="text" class="form-control" (keyup)="search($event)"
+                                        placeholder="Search">
+                                </div>
+                            </div> <!-- card-body.// -->
+                        </div>
+                    </article> <!-- filter-group  .// -->
+                    <article class="filter-group">
+                        <header class="card-header">
+                            <h6 class="title fw-bold">Brands </h6>
+                        </header>
+                        <div class="filter-content collapse show" id="collapse_2">
+                            <div class="card-body">
+                                <label class="custom-control custom-checkbox">
+                                    <input type="checkbox" checked="" class="custom-control-input">
+                                    <div class="custom-control-label">Mercedes
+                                        <b class="badge badge-pill badge-light float-right">120</b>
+                                    </div>
+                                </label>
+                                <label class="custom-control custom-checkbox">
+                                    <input type="checkbox" checked="" class="custom-control-input">
+                                    <div class="custom-control-label">Toyota
+                                        <b class="badge badge-pill badge-light float-right">15</b>
+                                    </div>
+                                </label>
+                                <label class="custom-control custom-checkbox">
+                                    <input type="checkbox" checked="" class="custom-control-input">
+                                    <div class="custom-control-label">Mitsubishi
+                                        <b class="badge badge-pill badge-light float-right">35</b>
+                                    </div>
+                                </label>
+                                <label class="custom-control custom-checkbox">
+                                    <input type="checkbox" checked="" class="custom-control-input">
+                                    <div class="custom-control-label">Nissan
+                                        <b class="badge badge-pill badge-light float-right">89</b>
+                                    </div>
+                                </label>
+                                <label class="custom-control custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input">
+                                    <div class="custom-control-label">Honda
+                                        <b class="badge badge-pill badge-light float-right">30</b>
+                                    </div>
+                                </label>
+                            </div> <!-- card-body.// -->
+                        </div>
+                    </article> <!-- filter-group .// -->
+                    <article class="filter-group">
+                        <header class="card-header">
+                            <h6 class="title fw-bold">Price range </h6>
+                        </header>
+                        <div class="filter-content collapse show" id="collapse_3">
+                            <div class="card-body">
+                                <input type="range" class="custom-range" min="0" max="100" name="" aria-label="range">
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <label>Min</label>
+                                        <input class="form-control" placeholder="$0" type="number">
+                                    </div>
+                                    <div class="form-group text-right col-md-6">
+                                        <label>Max</label>
+                                        <input class="form-control" placeholder="$1,0000" type="number">
+                                    </div>
+                                </div> <!-- form-row.// -->
+                                <button type="button" class="btn btn-block btn-primary mt-3">Apply</button>
+                            </div><!-- card-body.// -->
+                        </div>
+                    </article> <!-- filter-group .// -->
+                </div> <!-- card.// -->
+            </aside>
+            <main class="col-md-9">
+
+                <header class="border-bottom mb-4 pb-3">
+                    <div class="form-inline d-flex justify-content-between">
+                        <h3 class="mr-md-auto fw-light fs-2">{{listBook.length}} Items found </h3>
+                        <select class="mr-2" aria-label="label for the select">
+                            <option>Latest items</option>
+                            <option>Trending</option>
+                            <option>Most Popular</option>
+                            <option>Cheapest</option>
+                        </select>
+                    </div>
+                </header><!-- sect-heading -->
+
+                <div class="row">
+                    <div class="col-md-4">
+                        <figure class="card card-product-grid">
+                            <div class="img-wrap">
+                                <!-- <span class="badge badge-danger"> NEW </span> -->
+                                <div class="p-3">
+                                    <div class="title_book">
+                                        <p class="fs-4">Drug Name</p>
+                                    </div>
+                                    <div class="price-wrap mt-2">
+                                        <strong>Price: &nbsp;</strong><span class="price">$1280</span>
+                                    </div>
+                                    <div class="mt-2">
+                                        <strong>Type: &nbsp;</strong> <span>typeBook</span>
+                                    </div>
+                                    <div class="mt-2">
+                                        <strong>Quantity: &nbsp;</strong> <span>quantity</span>
+                                    </div>
+                                </div>
+                                <a class="btn-overlay"><i class="fa fa-search-plus"></i> Quick view</a>
+                            </div> <!-- img-wrap.// -->
+                            <figcaption class="info-wrap">
+                                <div class="d-grid gap-2">
+                                    <button type="button" class="btn btn-light" (click)="viewDetail(0)"
+                                        data-bs-toggle="modal" data-bs-target="#exampleModal">View Details</button>
+                                    <button type="button" class="btn btn-danger" (click)="removeBook(0)"
+                                        data-bs-toggle="modal">Remove</button>
+                                    <button type="button" class="btn btn-warning" (click)="updateBook(0)"
+                                        data-bs-toggle="modal" data-bs-target="#exampleModal">Edit</button>
+                                </div>
+                            </figcaption>
+                        </figure>
+                    </div> <!-- col.// -->
+                    <div class="col-md-4" *ngFor="let book of listBook">
+                        <figure class="card card-product-grid">
+                            <div class="img-wrap">
+                                <!-- <span class="badge badge-danger"> NEW </span> -->
+                                <div class="p-3">
+                                    <div class="title_book">
+                                        <p class="fs-4">{{book.title}}</p>
+                                    </div>
+                                    <div class="price-wrap mt-2">
+                                        <strong>Price: &nbsp;</strong><span class="price">${{book.price}}</span>
+                                    </div>
+                                    <div class="mt-2">
+                                        <strong>Type: &nbsp;</strong> <span>{{book.type}}</span>
+                                    </div>
+                                    <div class="mt-2">
+                                        <strong>Quantity: &nbsp;</strong> <span>{{book.advance}}</span>
+                                    </div>
+                                </div>
+                                <a class="btn-overlay"><i class="fa fa-search-plus"></i> Quick view</a>
+                            </div> <!-- img-wrap.// -->
+                            <figcaption class="info-wrap">
+                                <div class="d-grid gap-2">
+                                    <button type="button" class="btn btn-light" (click)="viewDetail(book.book_id)">View
+                                        Details</button>
+                                    <button type="button" class="btn btn-danger"
+                                        (click)="removeBook(book.book_id)">Remove</button>
+                                    <button type="button" class="btn btn-warning"
+                                        (click)="updateBook(book.book_id)">Edit</button>
+                                </div>
+                            </figcaption>
+                        </figure>
+                    </div> <!-- col.// -->
+                </div>
+
+
+                <!-- <nav aria-label="Page navigation example">
+                    <ul class="pagination justify-content-center">
+                        <li class="page-item disabled">
+                            <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
+                        </li>
+                        <li class="page-item"><a class="page-link" href="#">1</a></li>
+                        <li class="page-item"><a class="page-link" href="#">2</a></li>
+                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                        <li class="page-item">
+                            <a class="page-link" href="#">Next</a>
+                        </li>
+                    </ul>
+                </nav> -->
+
+            </main>
+        </div>
+    </div>
+</main>
+<app-crudmodal [mode]="mode" [book]="book" (updateBook)="updateBookDetail($event)"></app-crudmodal>

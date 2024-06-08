@@ -1,0 +1,97 @@
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog rounded-0" role="document"
+        style="position: fixed !important; top: 0; right: 0; margin: 0; width: 30em;">
+        <div class="modal-content rounded-0 border-0 min-vh-100">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">
+                    {{ mode === 'view' ? 'Book Details' : 'Edit Book' }}
+                </h5>
+            </div>
+            <div class="modal-body" *ngIf="mode === 'view'">
+                <div class="title_book">
+                    <p class="fs-4">Drug Name</p>
+                </div>
+                <div class="price-wrap mt-2">
+                    <strong>Price: &nbsp;</strong><span class="price">$1280</span>
+                </div>
+                <div class="mt-2">
+                    <strong>Type: &nbsp;</strong> <span>typeBook</span>
+                </div>
+                <div class="mt-2">
+                    <strong>Quantity: &nbsp;</strong> <span>quantity</span>
+                </div>
+                <div class="mt-2">
+                    something...
+                </div>
+            </div>
+            <div class="modal-body" *ngIf="mode === 'edit'">
+                <form [formGroup]="formUpdate" class="" > 
+                    <div class="mb-3">
+                        <label for="title" class="form-label  text-danger fs-6">* Title</label>
+                        <input type="text" class="form-control" id="title" formControlName="title"
+                            placeholder="Title book">
+                        <div class="text-danger" *ngIf="formUpdate.controls?.['title']?.touched">
+                            <span *ngIf="formUpdate.controls?.['title']?.errors?.['required']">This is required</span>
+                            <span *ngIf="formUpdate.controls?.['title']?.errors?.['minlength']">min length > 5</span>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="inputState" class="form-label text-danger fs-6">* Type</label>
+                        <select id="inputState" class="form-control" formControlName="type">
+                            <option selected disabled value="">Choose...</option>
+                            <option>Type 1</option>
+                            <option>Type 2</option>
+                            <option>Type 3</option>
+                            <option>Type 4</option>
+                            <option>Type 5</option>
+                        </select>
+                        <div class="text-danger" *ngIf="formUpdate.controls?.['type']?.touched">
+                            <span *ngIf="formUpdate.controls?.['type']?.errors?.['required']">This is required</span>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="author" class="form-label  text-danger fs-6">* Author</label>
+                        <input type="text" class="form-control" id="author" formControlName="author"
+                            placeholder="Author">
+                        <div class="text-danger" *ngIf="formUpdate.controls?.['author']?.touched">
+                            <span *ngIf="formUpdate.controls?.['author']?.errors?.['required']">This is required</span>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="publisher" class="form-label  text-danger fs-6">* Publisher</label>
+                        <input type="text" class="form-control" id="publisher" formControlName="publisher"
+                            placeholder="publisher">
+                        <div class="text-danger" *ngIf="formUpdate.controls?.['publisher']?.touched">
+                            <span *ngIf="formUpdate.controls?.['publisher']?.errors?.['required']">This is
+                                required</span>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="price" class="form-label  text-danger fs-6">* Price</label>
+                        <input type="text" class="form-control" id="price" formControlName="price" placeholder="price">
+                        <div class="text-danger" *ngIf="formUpdate.controls?.['price']?.touched">
+                            <span *ngIf="formUpdate.controls?.['price']?.errors?.['required']">This is required</span>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="quantity" class="form-label  text-danger fs-6">* Quantity</label>
+                        <input type="number" class="form-control" id="quantity" formControlName="quantity"
+                            placeholder="quantity">
+                        <div class="text-danger" *ngIf="formUpdate.controls?.['quantity']?.touched">
+                            <span *ngIf="formUpdate.controls?.['quantity']?.errors?.['required']">This is
+                                required</span>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal"
+                    *ngIf="mode === 'view'; else noMode">Close</button>
+                <ng-template #noMode>
+                    <button type="submit" class="btn btn-info" data-dismiss="modal" [disabled]="formUpdate.invalid" (click)="onUpdate()">Save
+                        change</button>
+                </ng-template>
+            </div>
+        </div>
+    </div>
+</div>
